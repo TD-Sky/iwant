@@ -1,0 +1,73 @@
+<div align="center">
+# iwant
+
+**Install applications what I WANT.**
+</div>
+
+---
+
+**iwant** is a tool to install applications from provided manifest(.toml) using the supported package managers.
+
+
+---
+
+### Installation
+
+```bash
+$ cargo install --path .
+```
+
+
+---
+
+### Supported Package Managers
+
+- [x] pacman
+- [x] paru
+- [x] flatpak (name allowed only: `flathub`)
+- [x] cargo
+- [x] npm
+
+Because I'm a Arch Linux user, so the default manager is hard coded with `pacman` ;) .
+
+
+---
+
+### Manifest
+
+The manifest of **iwant** is a toml file. It has the following structure:
+
+```toml
+[category0]
+itemA = { packages = [], manager = "", description = "" }
+
+[category1]
+# Or only explicitly states the
+# *name* (here is "itemB") and
+# *description* (here is "itemB description").
+itemB = "itemB description"
+
+# ...more categories
+```
+
+The `item` later would be translated into
+
+|             | name | category |  packages   | manager | description
+|:-----------:|:----:|:--------:|:-----------:|:-------:|:-----------:
+| **Default** |  --  |    --    | `item.name` |  pacman |     ""
+
+When you don't state the keys explicitly, they would have default values as above.
+
+
+---
+
+### Usage
+
+Please `iwant -h` and then read the help.
+
+
+---
+
+### LICENSE
+
+The MIT License ([MIT](https://opensource.org/licenses/MIT))

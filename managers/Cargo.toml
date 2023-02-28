@@ -1,0 +1,9 @@
+[package]
+name = "managers"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies.derive_more]
+version = "0.99.17"
+default-features = false
+features = ["as_mut"]
