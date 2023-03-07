@@ -15,12 +15,12 @@ _iwant() {
 
     local context curcontext="$curcontext" state line
     _arguments "${_arguments_options[@]}" \
-'*-C+[The specified categories \[default: all\]]:CATEGORIES: ' \
-'*--categories=[The specified categories \[default: all\]]:CATEGORIES: ' \
-'*-E+[The excluded categories]:EXCLUDE: ' \
-'*--exclude=[The excluded categories]:EXCLUDE: ' \
-'*-m+[Enable extra managers]:MANAGERS:(paru flatpak npm cargo)' \
-'*--extra-managers=[Enable extra managers]:MANAGERS:(paru flatpak npm cargo)' \
+'*-C+[The specified categories \[delimiter: ,\] \[default: all\]]:CATEGORIES: ' \
+'*--categories=[The specified categories \[delimiter: ,\] \[default: all\]]:CATEGORIES: ' \
+'*-E+[The excluded categories \[delimiter: ,\]]:EXCLUDE: ' \
+'*--exclude=[The excluded categories \[delimiter: ,\]]:EXCLUDE: ' \
+'*-m+[Enable extra managers \[delimiter: ,\]]:MANAGERS:(paru flatpak npm cargo)' \
+'*--extra-managers=[Enable extra managers \[delimiter: ,\]]:MANAGERS:(paru flatpak npm cargo)' \
 '(-p --preview)-s[Don'\''t display manifest]' \
 '(-p --preview)--silent[Don'\''t display manifest]' \
 '(-s --silent)-p[View the manifest without downloading]' \
@@ -29,7 +29,7 @@ _iwant() {
 '--help[Print help]' \
 '-V[Print version]' \
 '--version[Print version]' \
-':manifest -- The manifest (.toml) of applications:_files' \
+':manifest -- The manifest of applications:_files' \
 && ret=0
 }
 
@@ -39,8 +39,4 @@ _iwant_commands() {
     _describe -t commands 'iwant commands' commands "$@"
 }
 
-if [ "$funcstack[1]" = "_iwant" ]; then
-    _iwant "$@"
-else
-    compdef _iwant iwant
-fi
+_iwant "$@"
