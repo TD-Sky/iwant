@@ -65,6 +65,8 @@ When you don't state the keys explicitly, they would have default values as abov
 
 Please `iwant -h` and then read the help.
 
+You can also refer to [my manifest](https://github.com/TD-Sky/dotfiles/blob/main/apps.toml).
+
 
 
 ## LICENSE
