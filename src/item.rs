@@ -2,6 +2,7 @@ use crate::spec;
 use parse_display::Display;
 use serde::Deserialize;
 use std::borrow::Cow;
+use std::slice;
 use std::str::FromStr;
 use tabled::Tabled;
 
@@ -56,6 +57,11 @@ impl<'spec> Item<'spec> {
         };
 
         Ok(item)
+    }
+
+    #[inline]
+    pub fn packages(&self) -> impl Iterator<Item = &String> {
+        self.packages.unwrap_or(slice::from_ref(self.name)).iter()
     }
 }
 

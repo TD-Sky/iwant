@@ -42,23 +42,21 @@ fn main() -> Result<()> {
     }
 
     let packages = select_packages(&items, Manager::Pacman);
-    if !packages.is_empty() {
-        Pacman::install().args(&packages).execute()?;
-    }
+    Pacman::install().args(packages).execute()?;
 
     if cli.extra_managers.contains(&ExtraManager::Paru) {
         let packages = select_packages(&items, Manager::Paru);
-        Paru::install().args(&packages).execute()?;
+        Paru::install().args(packages).execute()?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Flatpak) {
         let packages = select_packages(&items, Manager::Flatpak);
-        Flatpak::install().args(&packages).execute()?;
+        Flatpak::install().args(packages).execute()?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Npm) {
         let packages = select_packages(&items, Manager::Npm);
-        Npm::install().args(&packages).execute()?;
+        Npm::install().args(packages).execute()?;
     }
 
     Ok(())
@@ -78,17 +76,13 @@ fn retain_categories(manifest: &mut Manifest, includeds: &[String], excludeds: &
     }
 }
 
-fn select_packages<'spec>(items: &'spec [Item<'spec>], manager: Manager) -> Vec<&'spec String> {
+#[inline]
+fn select_packages<'spec>(
+    items: &'spec [Item<'spec>],
+    manager: Manager,
+) -> impl Iterator<Item = &'spec String> {
     items
         .iter()
-        .filter(|&item| item.manager == manager)
-        .fold(Vec::new(), |mut packages, item| {
-            if let Some(pkgs) = item.packages {
-                packages.extend(pkgs.iter());
-            } else {
-                packages.push(item.name);
-            }
-
-            packages
-        })
+        .filter(move |&item| item.manager == manager)
+        .flat_map(|item| item.packages())
 }
