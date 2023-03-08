@@ -8,12 +8,12 @@ use tabled::Tabled;
 
 #[derive(Debug, Tabled)]
 pub struct Item<'spec> {
-    pub name: &'spec String,
-    pub category: &'spec String,
+    name: &'spec String,
+    category: &'spec String,
     #[tabled(display_with("Self::display_packages", args))]
-    pub packages: Option<&'spec [String]>,
-    pub manager: Manager,
-    pub description: &'spec str,
+    packages: Option<&'spec [String]>,
+    pub(super) manager: Manager,
+    description: &'spec str,
 }
 
 #[derive(Debug, Default, PartialEq, Eq, Display, Deserialize)]
@@ -60,8 +60,8 @@ impl<'spec> Item<'spec> {
     }
 
     #[inline]
-    pub fn packages(&self) -> impl Iterator<Item = &String> {
-        self.packages.unwrap_or(slice::from_ref(self.name)).iter()
+    pub fn packages(&self) -> &[String] {
+        self.packages.unwrap_or(slice::from_ref(self.name))
     }
 }
 
