@@ -39,4 +39,8 @@ _iwant_commands() {
     _describe -t commands 'iwant commands' commands "$@"
 }
 
-_iwant "$@"
+if [ "$funcstack[1]" = "_iwant" ]; then
+    _iwant "$@"
+else
+    compdef _iwant iwant
+fi
