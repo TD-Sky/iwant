@@ -10,7 +10,7 @@ use self::spec::Manifest;
 use anyhow::Result;
 use clap::Parser;
 use item::Manager;
-use managers::*;
+use package_managers::*;
 use std::fs::File;
 use std::io::Read;
 

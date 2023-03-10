@@ -1,5 +1,5 @@
 [workspace]
-members = [".", "managers"]
+members = [".", "package-managers", "package-manager-derive"]
 
 [package]
 name = "iwant"
@@ -13,7 +13,7 @@ clap = { version = "4.0.26", features = ["derive"] }
 serde = { version = "1.0.147", features = ["derive"] }
 tabled = "0.10.0"
 thiserror = "1.0.38"
-managers = { path = "managers" }
+package-managers = { path = "package-managers" }
 toml = "0.7.2"
 parse-display = { version = "0.8.0", default-features = false }
 
