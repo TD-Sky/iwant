@@ -1,7 +1,7 @@
-use derive_more::AsMut;
+use package_manager_derive::PackageManager;
 use std::process::Command;
 
-#[derive(AsMut)]
+#[derive(PackageManager)]
 pub struct Cargo(Command);
 
 impl Cargo {
