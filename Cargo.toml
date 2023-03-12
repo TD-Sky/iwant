@@ -4,8 +4,14 @@ members = [".", "package-managers", "package-manager-derive"]
 [package]
 name = "iwant"
 version = "0.1.1"
+authors = ["Collide <three-dim-sky@foxmail.com>"]
 edition = "2021"
 description = "Install applications what I WANT."
+repository = "https://github.com/TD-Sky/iwant"
+license = "MIT"
+keywords = ["package-management"]
+categories = ["command-line-utilities"]
+readme = "README.md"
 
 [dependencies]
 anyhow = "1.0.66"
