@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2023-03-12
+
+### Documentation
+
+- Add changelog
+- Package profile
+
+### Miscellaneous Tasks
+
+- _iwant changed
+
+### Refactor
+
+- Simplify getter; hide the fields
+- Rename and use procedual macro
+
 ## [0.1.1] - 2023-03-07
 
 ### Documentation
