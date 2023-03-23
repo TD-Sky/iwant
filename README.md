@@ -16,8 +16,16 @@
 
 ## Installation
 
+Install from source code:
+
 ```bash
 $ cargo install --path .
+```
+
+Install from **AUR**:
+
+```bash
+$ paru -S iwant
 ```
 
 
