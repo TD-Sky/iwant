@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2023-04-02
+
+### Documentation
+
+- Release to AUR
+
+### Features
+
+- Ignore completions
+
 ## [0.2.0] - 2023-03-12
 
 ### Documentation
