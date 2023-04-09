@@ -8,7 +8,7 @@ impl Npm {
     #[inline]
     pub fn install() -> Self {
         let mut cmd = Command::new("npm");
-        cmd.arg("install");
+        cmd.args(["install", "-g"]);
         Self(cmd)
     }
 }
