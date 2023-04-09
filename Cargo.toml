@@ -14,19 +14,19 @@ categories = ["command-line-utilities"]
 readme = "README.md"
 
 [dependencies]
-anyhow = "1.0.66"
-clap = { version = "4.0.26", features = ["derive"] }
-serde = { version = "1.0.147", features = ["derive"] }
+anyhow = "1.0.70"
+clap = { version = "4.2.1", features = ["derive"] }
+serde = { version = "1.0.159", features = ["derive"] }
 tabled = "0.10.0"
-thiserror = "1.0.38"
+thiserror = "1.0.40"
 package-managers = { path = "package-managers" }
-toml = "0.7.2"
+toml = "0.7.3"
 parse-display = { version = "0.8.0", default-features = false }
 
 [build-dependencies]
-clap = { version = "4.0.26", features = ["derive"] }
-clap_complete = "4.0.5"
-clap_complete_nushell = "0.1.8"
+clap = { version = "4.2.1", features = ["derive"] }
+clap_complete = "4.2.0"
+clap_complete_nushell = "0.1.10"
 
 [[bin]]
 name = "iwant"
