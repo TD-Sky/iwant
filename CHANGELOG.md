@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.2] - 2023-04-09
+
+### Bug Fixes
+
+- Install globally
+
+### Miscellaneous Tasks
+
+- Upgrade
+
 ## [0.2.1] - 2023-04-02
 
 ### Documentation
