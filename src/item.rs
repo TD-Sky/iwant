@@ -90,7 +90,7 @@ impl FromStr for Manager {
 impl<'spec> Item<'spec> {
     fn display_packages(&self) -> Cow<'spec, str> {
         match self.packages {
-            Some(packages) => Cow::from(packages.join(" ")),
+            Some(packages) => Cow::from(packages.join("\n")),
             None => Cow::from(self.name),
         }
     }

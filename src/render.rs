@@ -1,5 +1,5 @@
 use crate::item::Item;
-use tabled::object::{Column, Object, Rows};
+use tabled::object::Rows;
 use tabled::Alignment;
 use tabled::Modify;
 use tabled::Style;
@@ -10,6 +10,6 @@ pub fn to_table(items: &[Item<'_>]) -> Table {
     let mut table = items.table();
     table
         .with(Style::rounded())
-        .with(Modify::new(Rows::first().and(Column::from(2))).with(Alignment::center()));
+        .with(Modify::new(Rows::first()).with(Alignment::center()));
     table
 }
