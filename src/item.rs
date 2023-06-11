@@ -10,7 +10,7 @@ use tabled::Tabled;
 pub struct Item<'spec> {
     name: &'spec String,
     category: &'spec String,
-    #[tabled(display_with("Self::display_packages", args))]
+    #[tabled(display_with("Self::display_packages", self))]
     packages: Option<&'spec [String]>,
     pub(super) manager: Manager,
     description: &'spec str,
