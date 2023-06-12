@@ -73,10 +73,10 @@ When you don't state the keys explicitly, they would have default values as abov
 
 Please `iwant -h` and then read the help.
 
-You can also refer to [my manifest](https://github.com/TD-Sky/dotfiles/blob/main/apps.toml).
+You can also refer to [my manifest](https://github.com/TD-Sky/dotfiles/blob/main/Templates/apps.toml).
 
 
 
 ## LICENSE
 
-The MIT License ([MIT](https://opensource.org/licenses/MIT))
+The MIT License ([MIT](https://opensource.org/license/mit/))
