@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2023-06-12
+
+### Features
+
+- Wrap the table line in case it's too long
+- Color cells
+- Track completions
+
+### Refactor
+
+- Separate each package name with new line; align column `packages` left
+
 ## [0.2.2] - 2023-04-09
 
 ### Bug Fixes
