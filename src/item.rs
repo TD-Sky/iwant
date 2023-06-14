@@ -1,6 +1,7 @@
 use crate::spec;
 use parse_display::Display;
 use serde::Deserialize;
+use smol_str::SmolStr;
 use std::borrow::Cow;
 use std::slice;
 use std::str::FromStr;
@@ -8,10 +9,10 @@ use tabled::Tabled;
 
 #[derive(Debug, Tabled)]
 pub struct Item<'spec> {
-    name: &'spec String,
-    category: &'spec String,
+    name: &'spec SmolStr,
+    category: &'spec SmolStr,
     #[tabled(display_with("Self::display_packages", self))]
-    packages: Option<&'spec [String]>,
+    packages: Option<&'spec [SmolStr]>,
     pub(super) manager: Manager,
     description: &'spec str,
 }
@@ -29,8 +30,8 @@ pub enum Manager {
 
 impl<'spec> Item<'spec> {
     pub fn try_new(
-        category: &'spec String,
-        name: &'spec String,
+        category: &'spec SmolStr,
+        name: &'spec SmolStr,
         item: &'spec spec::Item,
     ) -> Result<Self, UnknownManager> {
         let item = match item {
@@ -60,7 +61,7 @@ impl<'spec> Item<'spec> {
     }
 
     #[inline]
-    pub fn packages(&self) -> &[String] {
+    pub fn packages(&self) -> &[SmolStr] {
         self.packages.unwrap_or(slice::from_ref(self.name))
     }
 }
@@ -91,7 +92,7 @@ impl<'spec> Item<'spec> {
     fn display_packages(&self) -> Cow<'spec, str> {
         match self.packages {
             Some(packages) => Cow::from(packages.join("\n")),
-            None => Cow::from(self.name),
+            None => Cow::from(self.name.as_str()),
         }
     }
 }

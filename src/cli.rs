@@ -1,5 +1,6 @@
 use clap::Parser;
 use clap::ValueEnum;
+use smol_str::SmolStr;
 use std::path::PathBuf;
 
 #[derive(Parser)]
@@ -10,11 +11,11 @@ pub struct Cli {
 
     /// The specified categories [delimiter: ,] [default: all]
     #[arg(long, short = 'C', value_delimiter = ',')]
-    pub categories: Vec<String>,
+    pub categories: Vec<SmolStr>,
 
     /// The excluded categories [delimiter: ,]
     #[arg(long, short = 'E', value_delimiter = ',')]
-    pub exclude: Vec<String>,
+    pub exclude: Vec<SmolStr>,
 
     /// Don't display manifest
     #[arg(long, short, conflicts_with = "preview")]

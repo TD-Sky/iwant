@@ -11,6 +11,7 @@ use anyhow::Result;
 use clap::Parser;
 use item::Manager;
 use package_managers::*;
+use smol_str::SmolStr;
 use std::fs::File;
 use std::io::Read;
 
@@ -62,7 +63,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn retain_categories(manifest: &mut Manifest, includeds: &[String], excludeds: &[String]) {
+fn retain_categories(manifest: &mut Manifest, includeds: &[SmolStr], excludeds: &[SmolStr]) {
     let including = !includeds.is_empty();
     let excluding = !excludeds.is_empty();
 
@@ -80,9 +81,10 @@ fn retain_categories(manifest: &mut Manifest, includeds: &[String], excludeds: &
 fn select_packages<'spec>(
     items: &'spec [Item<'spec>],
     manager: Manager,
-) -> impl Iterator<Item = &'spec String> {
+) -> impl Iterator<Item = &'spec str> {
     items
         .iter()
         .filter(move |&item| item.manager == manager)
         .flat_map(|item| item.packages())
+        .map(|p| p.as_str())
 }
