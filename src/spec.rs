@@ -1,8 +1,9 @@
 use serde::Deserialize;
+use smol_str::SmolStr;
 use std::collections::HashMap;
 
-pub type Manifest = HashMap<String, Category>;
-pub type Category = HashMap<String, Item>;
+pub type Manifest = HashMap<SmolStr, Category>;
+pub type Category = HashMap<SmolStr, Item>;
 
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
@@ -13,7 +14,7 @@ pub enum Item {
 
 #[derive(Debug, Deserialize)]
 pub struct Info {
-    pub packages: Option<Vec<String>>,
-    pub manager: Option<String>,
+    pub packages: Option<Vec<SmolStr>>,
+    pub manager: Option<SmolStr>,
     pub description: Option<String>,
 }
