@@ -3,7 +3,7 @@ members = [".", "package-managers", "package-manager-derive"]
 
 [package]
 name = "iwant"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Collide <three-dim-sky@foxmail.com>"]
 edition = "2021"
 description = "Install applications what I WANT."
