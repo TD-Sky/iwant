@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2023-11-10
+
+### Features
+
+- Support `cargo`
+
 ## [0.3.1] - 2023-07-08
 
 ### Documentation
