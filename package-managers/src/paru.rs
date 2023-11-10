@@ -5,7 +5,6 @@ use std::process::Command;
 pub struct Paru(Command);
 
 impl Paru {
-    #[inline]
     pub fn install() -> Self {
         let mut cmd = Command::new("paru");
         cmd.args(["-S", "--needed"]);

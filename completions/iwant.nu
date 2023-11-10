@@ -18,4 +18,4 @@ module completions {
 
 }
 
-use completions *
+export use completions *

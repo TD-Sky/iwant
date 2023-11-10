@@ -5,7 +5,6 @@ use std::process::Command;
 pub struct Cargo(Command);
 
 impl Cargo {
-    #[inline]
     pub fn install() -> Self {
         let mut cmd = Command::new("cargo");
         cmd.arg("install");

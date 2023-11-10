@@ -59,4 +59,4 @@ _iwant() {
     esac
 }
 
-complete -F _iwant -o bashdefault -o default iwant
+complete -F _iwant -o nosort -o bashdefault -o default iwant
