@@ -50,14 +50,19 @@ fn main() -> Result<()> {
         Paru::install().args(packages).execute()?;
     }
 
-    if cli.extra_managers.contains(&ExtraManager::Flatpak) {
-        let packages = select_packages(&items, Manager::Flatpak);
-        Flatpak::install().args(packages).execute()?;
-    }
-
     if cli.extra_managers.contains(&ExtraManager::Npm) {
         let packages = select_packages(&items, Manager::Npm);
         Npm::install().args(packages).execute()?;
+    }
+
+    if cli.extra_managers.contains(&ExtraManager::Cargo) {
+        let packages = select_packages(&items, Manager::Cargo);
+        Cargo::install().args(packages).execute()?;
+    }
+
+    if cli.extra_managers.contains(&ExtraManager::Flatpak) {
+        let packages = select_packages(&items, Manager::Flatpak);
+        Flatpak::install().args(packages).execute()?;
     }
 
     Ok(())
@@ -77,7 +82,6 @@ fn retain_categories(manifest: &mut Manifest, includeds: &[SmolStr], excludeds: 
     }
 }
 
-#[inline]
 fn select_packages<'spec>(
     items: &'spec [Item<'spec>],
     manager: Manager,

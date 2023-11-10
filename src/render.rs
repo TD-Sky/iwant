@@ -27,12 +27,10 @@ pub fn to_table(items: &[Item<'_>]) -> Table {
     table
 }
 
-#[inline]
 fn get_terminal_width() -> usize {
     terminal_size().expect("STDOUT is not a tty").0 .0 as usize
 }
 
-#[inline]
 fn column_body(i: usize) -> Segment<Range<usize>, RangeFrom<usize>> {
     Segment::new(1.., i..i + 1)
 }

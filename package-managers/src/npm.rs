@@ -5,7 +5,6 @@ use std::process::Command;
 pub struct Npm(Command);
 
 impl Npm {
-    #[inline]
     pub fn install() -> Self {
         let mut cmd = Command::new("npm");
         cmd.args(["install", "-g"]);

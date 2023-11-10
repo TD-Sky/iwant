@@ -14,23 +14,23 @@ categories = ["command-line-utilities"]
 readme = "README.md"
 
 [dependencies]
-anyhow = "1.0.71"
-clap = { version = "4.3.3", features = ["derive"] }
-serde = { version = "1.0.164", features = ["derive"] }
-tabled = { version = "0.12.2", features = ["color"] }
-thiserror = "1.0.40"
+anyhow = "1"
+thiserror = "1"
+clap = { version = "4.4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+tabled = { version = "0.14", features = ["color"] }
 package-managers = { path = "package-managers" }
-toml = "0.7.4"
-parse-display = { version = "0.8.1", default-features = false }
-terminal_size = "0.2.6"
-owo-colors = "3.5.0"
-smol_str = { version = "0.2.0", features = ["serde"] }
+toml = "0.8"
+parse-display = { version = "0.8", default-features = false }
+terminal_size = "0.3"
+owo-colors = "3.5"
+smol_str = { version = "0.2", features = ["serde"] }
 
 [build-dependencies]
-clap = { version = "4.3.3", features = ["derive"] }
-clap_complete = "4.3.1"
-clap_complete_nushell = "4.3.1"
-smol_str = { version = "0.2.0" }
+clap = { version = "4.4", features = ["derive"] }
+clap_complete = "4.4"
+clap_complete_nushell = "4.4"
+smol_str = { version = "0.2" }
 
 [[bin]]
 name = "iwant"
@@ -41,4 +41,4 @@ strip = true
 lto = true
 
 [dev-dependencies]
-smol_str = "0.2.0"
+smol_str = "0.2"
