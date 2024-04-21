@@ -18,12 +18,12 @@ anyhow = "1"
 thiserror = "1"
 clap = { version = "4.4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
-tabled = { version = "0.14", features = ["color"] }
+tabled = { version = "0.15", features = ["ansi"] }
 package-managers = { path = "package-managers" }
 toml = "0.8"
-parse-display = { version = "0.8", default-features = false }
+parse-display = { version = "0.9", default-features = false }
 terminal_size = "0.3"
-owo-colors = "3.5"
+owo-colors = "4.0"
 smol_str = { version = "0.2", features = ["serde"] }
 
 [build-dependencies]
@@ -37,7 +37,6 @@ name = "iwant"
 path = "src/main.rs"
 
 [profile.release]
-strip = true
 lto = true
 
 [dev-dependencies]
