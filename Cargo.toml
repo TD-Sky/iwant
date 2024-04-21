@@ -20,7 +20,7 @@ clap = { version = "4.4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
 tabled = { version = "0.15", features = ["ansi"] }
 package-managers = { path = "package-managers" }
-toml = "0.8"
+basic-toml = "0.1"
 parse-display = { version = "0.9", default-features = false }
 terminal_size = "0.3"
 owo-colors = "4.0"

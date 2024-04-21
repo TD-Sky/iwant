@@ -21,7 +21,7 @@ fn main() -> Result<()> {
     let mut manifest = String::new();
     let mut fd = File::open(&cli.manifest)?;
     fd.read_to_string(&mut manifest)?;
-    let mut manifest: Manifest = toml::from_str(&manifest)?;
+    let mut manifest: Manifest = basic_toml::from_str(&manifest)?;
 
     retain_categories(&mut manifest, &cli.categories, &cli.exclude);
 
