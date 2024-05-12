@@ -208,7 +208,6 @@ dependencies = [
  "clap_complete",
  "clap_complete_nushell",
  "owo-colors",
- "package-managers",
  "parse-display",
  "serde",
  "smol_str",
@@ -256,21 +255,6 @@ name = "owo-colors"
 version = "4.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "caff54706df99d2a78a5a4e3455ff45448d81ef1bb63c22cd14052ca0e993a3f"
-
-[[package]]
-name = "package-manager-derive"
-version = "0.1.0"
-dependencies = [
- "quote",
- "syn 2.0.60",
-]
-
-[[package]]
-name = "package-managers"
-version = "0.1.0"
-dependencies = [
- "package-manager-derive",
-]
 
 [[package]]
 name = "papergrid"

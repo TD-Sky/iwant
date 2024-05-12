@@ -1,7 +1,0 @@
-[package]
-name = "package-managers"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-package-manager-derive = { path = "../package-manager-derive" }

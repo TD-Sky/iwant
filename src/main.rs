@@ -1,19 +1,23 @@
 mod cli;
 mod item;
+mod pm;
 mod render;
 mod spec;
 
-use self::cli::Cli;
-use self::cli::ExtraManager;
-use self::item::Item;
-use self::spec::Manifest;
+use std::fs::File;
+use std::io::Read;
+
 use anyhow::Result;
 use clap::Parser;
 use item::Manager;
-use package_managers::*;
 use smol_str::SmolStr;
-use std::fs::File;
-use std::io::Read;
+
+use self::{
+    cli::{Cli, ExtraManager},
+    item::Item,
+    pm::*,
+    spec::Manifest,
+};
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
@@ -43,26 +47,26 @@ fn main() -> Result<()> {
     }
 
     let packages = select_packages(&items, Manager::Pacman);
-    Pacman::install().args(packages).execute()?;
+    pacman().args(packages).status()?;
 
     if cli.extra_managers.contains(&ExtraManager::Paru) {
         let packages = select_packages(&items, Manager::Paru);
-        Paru::install().args(packages).execute()?;
+        paru().args(packages).status()?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Npm) {
         let packages = select_packages(&items, Manager::Npm);
-        Npm::install().args(packages).execute()?;
+        npm().args(packages).status()?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Cargo) {
         let packages = select_packages(&items, Manager::Cargo);
-        Cargo::install().args(packages).execute()?;
+        cargo().args(packages).status()?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Flatpak) {
         let packages = select_packages(&items, Manager::Flatpak);
-        Flatpak::install().args(packages).execute()?;
+        flatpak().args(packages).status()?;
     }
 
     Ok(())
