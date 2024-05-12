@@ -1,14 +1,15 @@
-use crate::item::Item;
-
 use std::ops::{Range, RangeFrom};
 
 use owo_colors::OwoColorize;
-use tabled::settings::object::Segment;
 use tabled::settings::{
-    object::Rows, peaker::PriorityMax, Alignment, Format, Modify, Settings, Style, Width,
+    object::{Rows, Segment},
+    peaker::PriorityMax,
+    Alignment, Format, Modify, Settings, Style, Width,
 };
 use tabled::Table;
 use terminal_size::terminal_size;
+
+use crate::item::Item;
 
 pub fn to_table(items: &[Item<'_>]) -> Table {
     let mut table = Table::new(items);

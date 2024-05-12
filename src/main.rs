@@ -1,5 +1,6 @@
 mod cli;
 mod item;
+mod iter;
 mod pm;
 mod render;
 mod spec;
@@ -9,12 +10,12 @@ use std::io::Read;
 
 use anyhow::Result;
 use clap::Parser;
-use item::Manager;
 use smol_str::SmolStr;
 
 use self::{
     cli::{Cli, ExtraManager},
-    item::Item,
+    item::{CargoKind, Item, Manager, CARGO_KIND},
+    iter::PeekExt,
     pm::*,
     spec::Manifest,
 };
@@ -26,12 +27,13 @@ fn main() -> Result<()> {
     let mut fd = File::open(&cli.manifest)?;
     fd.read_to_string(&mut manifest)?;
     let mut manifest: Manifest = basic_toml::from_str(&manifest)?;
+    CARGO_KIND.set(manifest.options.cargo);
 
     retain_categories(&mut manifest, &cli.categories, &cli.exclude);
 
     let mut items = Vec::new();
-    for (cname, categroy) in manifest.iter() {
-        for (name, item) in categroy.iter() {
+    for (cname, categroy) in &manifest.categories {
+        for (name, item) in categroy {
             let item = Item::try_new(cname, name, item)?;
             items.push(item);
         }
@@ -46,27 +48,36 @@ fn main() -> Result<()> {
         return Ok(());
     }
 
-    let packages = select_packages(&items, Manager::Pacman);
-    pacman().args(packages).status()?;
+    fn unit<T>(_: T) {}
+
+    select_packages(&items, Manager::Pacman)
+        .on_some(|packages| pacman().args(packages).status().map(unit))?;
 
     if cli.extra_managers.contains(&ExtraManager::Paru) {
-        let packages = select_packages(&items, Manager::Paru);
-        paru().args(packages).status()?;
+        select_packages(&items, Manager::Paru)
+            .on_some(|packages| paru().args(packages).status().map(unit))?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Npm) {
-        let packages = select_packages(&items, Manager::Npm);
-        npm().args(packages).status()?;
+        select_packages(&items, Manager::Npm)
+            .on_some(|packages| npm().args(packages).status().map(unit))?;
     }
 
     if cli.extra_managers.contains(&ExtraManager::Cargo) {
-        let packages = select_packages(&items, Manager::Cargo);
-        cargo().args(packages).status()?;
+        select_packages(&items, Manager::Cargo(CargoKind::Bin))
+            .on_some(|packages| Cargo::new().binstall().args(packages).status().map(unit))?;
+
+        select_packages(&items, Manager::Cargo(CargoKind::Src))
+            .on_some(|packages| Cargo::new().install().args(packages).status().map(unit))?;
+
+        for p in select_packages(&items, Manager::Cargo(CargoKind::Git)) {
+            Cargo::new().git(p).status()?;
+        }
     }
 
     if cli.extra_managers.contains(&ExtraManager::Flatpak) {
-        let packages = select_packages(&items, Manager::Flatpak);
-        flatpak().args(packages).status()?;
+        select_packages(&items, Manager::Flatpak)
+            .on_some(|packages| flatpak().args(packages).status().map(unit))?;
     }
 
     Ok(())
@@ -78,11 +89,16 @@ fn retain_categories(manifest: &mut Manifest, includeds: &[SmolStr], excludeds: 
 
     if including && excluding {
         manifest
+            .categories
             .retain(|category, _| includeds.contains(category) && !excludeds.contains(category));
     } else if including {
-        manifest.retain(|category, _| includeds.contains(category));
+        manifest
+            .categories
+            .retain(|category, _| includeds.contains(category));
     } else if excluding {
-        manifest.retain(|category, _| !excludeds.contains(category));
+        manifest
+            .categories
+            .retain(|category, _| !excludeds.contains(category));
     }
 }
 
@@ -95,4 +111,5 @@ fn select_packages<'spec>(
         .filter(move |&item| item.manager == manager)
         .flat_map(|item| item.packages())
         .map(|p| p.as_str())
+        .peekable()
 }

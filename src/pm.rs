@@ -18,14 +18,30 @@ pub fn npm() -> Command {
     cmd
 }
 
-pub fn cargo() -> Command {
-    let mut cmd = Command::new("cargo");
-    cmd.arg("install");
-    cmd
-}
-
 pub fn flatpak() -> Command {
     let mut cmd = Command::new("flatpak");
     cmd.args(["install", "flathub"]);
     cmd
+}
+
+#[derive(Debug)]
+pub struct Cargo(Command);
+
+impl Cargo {
+    pub fn new() -> Self {
+        Self(Command::new("cargo"))
+    }
+
+    pub fn install(&mut self) -> &mut Command {
+        self.0.arg("install")
+    }
+
+    pub fn binstall(&mut self) -> &mut Command {
+        self.0.arg("binstall")
+    }
+
+    pub fn git(&mut self, package: &str) -> &mut Command {
+        let url = format!("https://github.com/{package}");
+        self.0.args(["install", "--git", &url])
+    }
 }
