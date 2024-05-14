@@ -9,6 +9,7 @@ license = "MIT"
 keywords = ["package-management"]
 categories = ["command-line-utilities"]
 readme = "README.md"
+include = ["src/**/*", "Cargo.toml", "Cargo.lock", "LICENSE*", "README.md"]
 
 [dependencies]
 anyhow = "1"
