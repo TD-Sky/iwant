@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.1] - 2024-05-18
+
+### Documentation
+
+- *(readme)* Add specification
+
 ## [0.5.0] - 2024-05-14
 
 ### Features
