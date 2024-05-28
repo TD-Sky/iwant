@@ -11,22 +11,35 @@ categories = ["command-line-utilities"]
 readme = "README.md"
 include = ["src/**/*", "Cargo.toml", "Cargo.lock", "LICENSE*", "README.md"]
 
-[dependencies]
+[workspace.dependencies]
 anyhow = "1"
 thiserror = "1"
-clap = { version = "4.4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
-tabled = { version = "0.15", features = ["ansi"] }
+clap = { version = "4.5", features = ["derive"] }
+clap_complete = "4.5"
+clap_complete_nushell = "4.4"
+tabled = "0.15"
 basic-toml = "0.1"
 terminal_size = "0.3"
 owo-colors = "4.0"
-smol_str = { version = "0.2", features = ["serde"] }
+smol_str = "0.2"
+
+[dependencies]
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+clap = { workspace = true }
+tabled = { workspace = true, features = ["ansi"] }
+basic-toml = { workspace = true }
+terminal_size = { workspace = true }
+owo-colors = { workspace = true }
+smol_str = { workspace = true, features = ["serde"] }
 
 [build-dependencies]
-clap = { version = "4.4", features = ["derive"] }
-clap_complete = "4.4"
-clap_complete_nushell = "4.4"
-smol_str = { version = "0.2" }
+clap = { workspace = true }
+clap_complete = { workspace = true }
+clap_complete_nushell = { workspace = true }
+smol_str = { workspace = true }
 
 [profile.release]
 lto = true
