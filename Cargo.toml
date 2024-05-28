@@ -1,6 +1,6 @@
 [package]
 name = "iwant"
-version = "0.5.1"
+version = "0.6.0"
 authors = ["Collide <three-dim-sky@foxmail.com>"]
 edition = "2021"
 description = "Install applications what I WANT."

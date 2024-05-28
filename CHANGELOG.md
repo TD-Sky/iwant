@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 2024-05-28
+
+### Refactor
+- *(spec)* Rename `description` to `desc`
+  - **BREAKING**: rename `description` to `desc`
+
+
 ## [0.5.1] - 2024-05-18
 
 ### Documentation
