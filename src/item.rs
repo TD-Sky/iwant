@@ -39,7 +39,7 @@ impl<'spec> Item<'spec> {
         item: &'spec spec::Item,
     ) -> Result<Self, UnknownManager> {
         let item = match item {
-            spec::Item::Description(description) => Self {
+            spec::Item::Desc(description) => Self {
                 name,
                 category,
                 packages: None,

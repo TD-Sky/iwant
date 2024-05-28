@@ -52,12 +52,12 @@ The manifest of **iwant** is a toml file. It has the following structure:
 cargo = "src"
 
 [category0]
-itemA = { packages = [], manager = "", description = "" }
+itemA = { packages = [], manager = "", desc = "" }
 
 [category1]
 # Or only explicitly states the
 # *name* (here is "itemB") and
-# *description* (here is "itemB description").
+# *desc* (here is "itemB description").
 itemB = "itemB description"
 
 # ...more categories
@@ -71,7 +71,7 @@ The `[-]` section is global options of *iwant* and it is optional. *iwant* will 
 | :-----------: | :------------: | :------------: | :------------- |
 | cargo | `src`, `bin` | `src` | Control the command used by manager `cargo` |
 
-### Categories
+### Item
 
 The `item` later would be translated into
 
@@ -96,7 +96,7 @@ Some managers have variants:
   In addition, `<owner>/<project>` is treated as github url path for `cargo`. For example, *iwant* will translate the following item
 
   ```toml
-  iwant = { packages = ["TD-Sky/iwant"], manager = "cargo", description = "Install applications what I WANT" }
+  iwant = { packages = ["TD-Sky/iwant"], manager = "cargo", desc = "Install applications what I WANT" }
   ```
 
   into `cargo install --git 'https://github.com/TD-Sky/iwant'`.

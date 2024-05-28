@@ -25,7 +25,7 @@ pub type Category = HashMap<SmolStr, Item>;
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
 pub enum Item {
-    Description(String),
+    Desc(String),
     Info(Info),
 }
 
