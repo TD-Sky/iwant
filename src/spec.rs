@@ -33,5 +33,5 @@ pub enum Item {
 pub struct Info {
     pub packages: Option<Vec<SmolStr>>,
     pub manager: Option<SmolStr>,
-    pub description: Option<String>,
+    pub desc: Option<String>,
 }

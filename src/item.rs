@@ -71,7 +71,7 @@ impl<'spec> Item<'spec> {
                     name,
                     packages: info.packages.as_deref(),
                     manager,
-                    description: info.description.as_deref().unwrap_or_default(),
+                    description: info.desc.as_deref().unwrap_or_default(),
                 }
             }
         };
