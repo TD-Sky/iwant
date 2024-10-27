@@ -16,16 +16,20 @@
 
 ## Installation
 
-Install from source code:
+Install from source code via `cargo`:
 
-```bash
+```console
 $ cargo install --path .
 ```
 
 Install from **AUR**:
 
-```bash
+```console
+# Install from source code
 $ paru -S iwant
+
+# Install binary
+$ paru -S iwant-bin
 ```
 
 
@@ -109,6 +113,18 @@ Some managers have variants:
 Please `iwant -h` and then read the help.
 
 You can also refer to [my manifest](https://github.com/TD-Sky/dotfiles/blob/main/Templates/apps.toml).
+
+
+
+## TODO
+
+- [ ] Preview installing table using pager (`less` / `bat`)
+- [ ] Dividing lines between rows in table
+- [ ] Trace the command to be run in verbose mode
+- [ ] After-hooks for running commands after installation
+- [ ] Change `--preview` to `--dry-run`
+- [ ] Print the enabled package managers
+- [ ] Support [uv](https://github.com/astral-sh/uv)
 
 
 
